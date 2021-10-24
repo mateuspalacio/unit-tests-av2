@@ -1,5 +1,7 @@
 package br.com.aula;
 
+import br.com.aula.exception.ContaInvalidaException;
+
 public class Conta {
 
 	private Cliente cliente;
@@ -7,8 +9,11 @@ public class Conta {
 	private int saldo;
 	private TipoConta tipoConta;
 
-	public Conta(Cliente cliente, int numeroConta, int saldo, TipoConta tipoConta) {
+	public Conta(Cliente cliente, int numeroConta, int saldo, TipoConta tipoConta) throws ContaInvalidaException {
 		this.cliente = cliente;
+		if(numeroConta > 10000){
+			throw new ContaInvalidaException();
+		}
 		this.numeroConta = numeroConta;
 		this.saldo = saldo;
 		this.tipoConta = tipoConta;

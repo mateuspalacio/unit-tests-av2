@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.aula.exception.ContaJaExistenteException;
 import br.com.aula.exception.ContaNaoExistenteException;
 import br.com.aula.exception.ContaSemSaldoException;
+import br.com.aula.exception.TransferenciaNegativaException;
 
 public class Banco {
 
@@ -35,7 +36,10 @@ public class Banco {
 	}
 
 	public void efetuarTransferencia(int numeroContaOrigem, int numeroContaDestino, int valor)
-			throws ContaNaoExistenteException, ContaSemSaldoException {
+			throws ContaNaoExistenteException, ContaSemSaldoException, TransferenciaNegativaException {
+
+		if(valor < 0)
+			throw new TransferenciaNegativaException();
 
 		Conta contaOrigem = this.obterContaPorNumero(numeroContaOrigem);
 		Conta contaDestino = this.obterContaPorNumero(numeroContaDestino);
